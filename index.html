@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Who Is America</title>
+<meta name="description" content="A collection of investigation games for Ethics and History. Pick a case file and start reading the evidence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Courier+Prime:wght@400;700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --desk:#1E2A2D;
+    --desk-hi:#27363A;
+    --paper:#F0E9D8;
+    --manila:#D8B370;
+    --manila-edge:#B08F4E;
+    --stamp:#B5342A;
+    --ink:#16181A;
+    --muted:#96A19E;
+    --tape:rgba(238,228,186,.72);
+    --shadow:0 10px 0 rgba(0,0,0,.22);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 50% 0%, var(--desk-hi) 0%, var(--desk) 62%),
+      var(--desk);
+    background-attachment:fixed;
+    color:var(--paper);
+    font-family:'Public Sans',-apple-system,'Segoe UI',Roboto,sans-serif;
+    line-height:1.6;
+    min-height:100vh;
+    padding:clamp(20px,5vw,56px) clamp(16px,5vw,40px) 60px;
+  }
+  .sheet{max-width:940px;margin:0 auto;}
+
+  /* ---------- masthead ---------- */
+  .eyebrow{
+    font-family:'Courier Prime',ui-monospace,monospace;
+    font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 14px;
+  }
+  h1{
+    font-family:'Big Shoulders Display','Public Sans',sans-serif;
+    font-weight:800;
+    font-size:clamp(3.4rem,14vw,7.5rem);
+    line-height:.82;
+    letter-spacing:.005em;
+    text-transform:uppercase;
+    margin:0;
+    color:var(--paper);
+  }
+  h1 .thin{font-weight:600;color:var(--manila);display:block;}
+  .deck{
+    max-width:46ch;margin:22px 0 0;font-size:1.06rem;color:#D8DEDB;
+  }
+  .rule{
+    height:3px;background:var(--paper);opacity:.18;border:0;margin:34px 0 30px;
+  }
+
+  /* ---------- section label ---------- */
+  .label{
+    font-family:'Courier Prime',ui-monospace,monospace;
+    font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--muted);display:flex;align-items:center;gap:12px;margin:0 0 18px;
+  }
+  .label::after{content:'';flex:1;height:1px;background:currentColor;opacity:.35;}
+
+  /* ---------- folders ---------- */
+  .folder{
+    position:relative;
+    display:block;
+    background:var(--manila);
+    border:3px solid var(--ink);
+    border-radius:4px 12px 12px 12px;
+    box-shadow:var(--shadow);
+    text-decoration:none;
+    color:var(--ink);
+    padding:26px clamp(20px,4vw,34px) 26px;
+    transition:transform .18s cubic-bezier(.3,.9,.4,1), box-shadow .18s ease;
+    will-change:transform;
+  }
+  .folder::before{ /* tab */
+    content:'';position:absolute;top:-17px;left:22px;width:118px;height:17px;
+    background:var(--manila);border:3px solid var(--ink);border-bottom:none;
+    border-radius:7px 7px 0 0;
+  }
+  .folder::after{ /* masking tape */
+    content:'';position:absolute;top:-13px;right:24px;width:104px;height:26px;
+    background:var(--tape);transform:rotate(-5deg);
+    box-shadow:0 1px 0 rgba(0,0,0,.15);
+  }
+  a.folder:hover,a.folder:focus-visible{
+    transform:translateY(-5px) rotate(-.5deg);
+    box-shadow:0 16px 0 rgba(0,0,0,.24);
+  }
+  a.folder:focus-visible{outline:4px solid var(--paper);outline-offset:5px;}
+
+  .caseno{
+    font-family:'Courier Prime',ui-monospace,monospace;
+    font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
+    color:#6B5527;margin:0 0 6px;
+  }
+  .folder h2{
+    font-family:'Big Shoulders Display','Public Sans',sans-serif;
+    font-weight:800;text-transform:uppercase;line-height:.9;
+    font-size:clamp(2rem,6.4vw,3.4rem);
+    margin:0 0 4px;max-width:16ch;
+  }
+  .sub{
+    font-weight:700;font-size:1rem;margin:0 0 14px;color:#4E3F1C;
+  }
+  .blurb{margin:0 0 22px;max-width:52ch;color:#2C2718;font-size:1.02rem;}
+  .blurb em{font-style:italic;}
+
+  .meta{
+    display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none;
+  }
+  .meta li{
+    font-family:'Courier Prime',ui-monospace,monospace;
+    font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+    border:2px solid var(--ink);border-radius:20px;padding:3px 11px;background:rgba(255,255,255,.34);
+  }
+
+  .go{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--stamp);color:#fff;font-weight:700;font-size:1.02rem;
+    border:3px solid var(--ink);border-radius:6px;
+    padding:12px 20px;box-shadow:0 4px 0 var(--ink);
+  }
+  a.folder:hover .go{box-shadow:0 6px 0 var(--ink);}
+  .go .arr{font-family:'Courier Prime',monospace;font-weight:700;}
+
+  .stamp{
+    position:absolute;right:clamp(14px,3vw,26px);bottom:20px;
+    font-family:'Courier Prime',ui-monospace,monospace;font-weight:700;
+    font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--stamp);border:3px solid var(--stamp);border-radius:4px;
+    padding:5px 12px;transform:rotate(-9deg);opacity:.82;
+    pointer-events:none;
+  }
+
+  /* ---------- pending case ---------- */
+  .pending{
+    margin-top:34px;
+    border:3px dashed rgba(240,233,216,.34);
+    border-radius:12px;
+    padding:26px clamp(20px,4vw,30px);
+    color:#C6CFCC;
+  }
+  .pending h3{
+    font-family:'Big Shoulders Display','Public Sans',sans-serif;
+    font-weight:600;text-transform:uppercase;letter-spacing:.02em;
+    font-size:1.7rem;margin:0 0 6px;color:var(--paper);
+  }
+  .pending p{margin:0;max-width:48ch;font-size:.98rem;}
+
+  footer{
+    margin-top:54px;padding-top:22px;border-top:1px solid rgba(240,233,216,.16);
+    font-size:.84rem;color:var(--muted);
+  }
+  footer p{margin:0 0 5px;}
+
+  /* ---------- entrance ---------- */
+  @media (prefers-reduced-motion:no-preference){
+    .rise{animation:rise .5s cubic-bezier(.2,.7,.3,1) both;}
+    .d1{animation-delay:.04s;} .d2{animation-delay:.12s;} .d3{animation-delay:.2s;}
+    @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  }
+
+  @media (max-width:560px){
+    .folder::after{width:78px;right:14px;}
+    .stamp{position:static;display:inline-block;transform:rotate(-3deg);margin-top:16px;}
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <header class="rise d1">
+    <p class="eyebrow">Ethics &amp; History</p>
+    <h1>Who Is<span class="thin">America</span></h1>
+    <p class="deck">Every case file here is a game. Each one starts with something people say all the time, and ends somewhere you did not expect. Pick a file and start reading the evidence.</p>
+  </header>
+
+  <hr class="rule">
+
+  <p class="label rise d2">Case files &middot; Open now</p>
+
+  <a class="folder rise d2" href="games/glue-game/index.html">
+    <p class="caseno">Case 001 &middot; Nationalism</p>
+    <h2>Who Is the Nation?</h2>
+    <p class="sub">The National Glue Game</p>
+    <p class="blurb">In 1963 Dr. King told the country he had a dream. Most people remember it as a dream about being kind to each other. Read it again and you find something harder: a claim about who counts as American, and on what terms. Seven missions, one wall that keeps moving, and a badge at the end if you can say where it lands.</p>
+    <ul class="meta">
+      <li>7 missions</li>
+      <li>9 lineups</li>
+      <li>~40 min</li>
+    </ul>
+    <span class="go">Open the case file <span class="arr">&rarr;</span></span>
+    <span class="stamp">Open</span>
+  </a>
+
+  <div class="pending rise d3">
+    <h3>Case 002</h3>
+    <p>Still being built. Check back later in the year.</p>
+  </div>
+
+  <footer class="rise d3">
+    <p>Works on a phone, a tablet, or a laptop. Nothing to install and nothing to sign into.</p>
+    <p>Character art: Twemoji by Twitter, licensed under CC-BY 4.0.</p>
+  </footer>
+
+</main>
+</body>
+</html>
