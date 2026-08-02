@@ -160,6 +160,36 @@
   .pending .caseno{color:var(--muted);font-size:.8rem;margin:0 0 6px;}
   .pending .sub{color:#C6CFCC;font-size:1rem;margin:0 0 14px;}
 
+  /* ---------- under construction placard ---------- */
+  .uc{
+    display:inline-flex;align-items:center;gap:12px;
+    background:#E4B33C;color:var(--ink);
+    border:3px solid var(--ink);border-radius:6px;
+    padding:10px 16px;margin:18px 0 2px;
+    box-shadow:0 5px 0 rgba(0,0,0,.32);
+    transform:rotate(-1.2deg);
+  }
+  .uc::before,.uc::after{
+    content:'';align-self:stretch;flex:0 0 11px;
+    border:2px solid var(--ink);border-radius:2px;
+    background:repeating-linear-gradient(45deg,#F5D77A 0 6px,#16181A 6px 12px);
+  }
+  .uc-text{
+    font-family:'Courier Prime',ui-monospace,monospace;
+    font-weight:700;font-size:.86rem;letter-spacing:.16em;text-transform:uppercase;
+    line-height:1.3;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .uc-rig{animation:jack .16s steps(2,end) infinite;}
+    .uc-dust{animation:ucdust .6s ease-out infinite;}
+    @keyframes jack{from{transform:translateY(0);}to{transform:translateY(2px);}}
+    @keyframes ucdust{0%{opacity:0;transform:translateY(2px);}40%{opacity:.7;}100%{opacity:0;transform:translateY(-8px);}}
+  }
+  @media (max-width:560px){
+    .uc{gap:9px;padding:9px 12px;}
+    .uc-text{font-size:.78rem;letter-spacing:.12em;}
+  }
+
   footer{
     margin-top:54px;padding-top:22px;border-top:1px solid rgba(240,233,216,.16);
     font-size:.84rem;color:var(--muted);
@@ -206,12 +236,33 @@
     <h3>What Breaks a Nation?</h3>
     <p class="sub">The Horseshoe Game</p>
     <p>Still being built. Check back later in the year.</p>
+    <div class="uc">
+      <svg class="uc-worker" viewBox="0 0 120 120" width="74" aria-hidden="true" focusable="false">
+        <line x1="6" y1="110" x2="114" y2="110" stroke="#16181A" stroke-width="5" stroke-linecap="round"/>
+        <g class="uc-dust">
+          <circle cx="72" cy="100" r="3" fill="#16181A" opacity=".55"/>
+          <circle cx="90" cy="96" r="2.3" fill="#16181A" opacity=".45"/>
+          <circle cx="62" cy="97" r="2" fill="#16181A" opacity=".4"/>
+        </g>
+        <g class="uc-rig">
+          <path d="M34 104V80h9v24" fill="#2B3A44" stroke="#16181A" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M47 104V80h9v24" fill="#2B3A44" stroke="#16181A" stroke-width="3" stroke-linejoin="round"/>
+          <rect x="29" y="101" width="17" height="9" rx="3" fill="#16181A"/>
+          <rect x="45" y="101" width="17" height="9" rx="3" fill="#16181A"/>
+          <path d="M32 48h26l4 34H28z" fill="#B5342A" stroke="#16181A" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="45" cy="34" r="11" fill="#C68642" stroke="#16181A" stroke-width="3"/>
+          <path d="M32 26a13 13 0 0 1 26 0z" fill="#F0E9D8" stroke="#16181A" stroke-width="3" stroke-linejoin="round"/>
+          <rect x="28" y="24" width="34" height="6" rx="3" fill="#F0E9D8" stroke="#16181A" stroke-width="3"/>
+          <path d="M58 58h20" stroke="#16181A" stroke-width="10" stroke-linecap="round"/>
+          <path d="M58 58h20" stroke="#C68642" stroke-width="5" stroke-linecap="round"/>
+          <rect x="64" y="52" width="31" height="9" rx="4" fill="#96A19E" stroke="#16181A" stroke-width="3"/>
+          <rect x="74" y="62" width="11" height="38" fill="#96A19E" stroke="#16181A" stroke-width="3"/>
+          <rect x="76" y="98" width="7" height="12" fill="#7F8C8A" stroke="#16181A" stroke-width="3"/>
+        </g>
+      </svg>
+      <span class="uc-text">Under<br>Construction</span>
+    </div>
   </div>
-
-  <footer class="rise d3">
-    <p>Works on a phone, a tablet, or a laptop. Nothing to install and nothing to sign into.</p>
-    <p>Character art: Twemoji by Twitter, licensed under CC-BY 4.0.</p>
-  </footer>
 
 </main>
 </body>
