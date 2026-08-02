@@ -61,6 +61,23 @@
     height:3px;background:var(--paper);opacity:.18;border:0;margin:34px 0 30px;
   }
 
+  /* ---------- mascot ---------- */
+  .masthead{display:flex;align-items:flex-end;gap:clamp(14px,3.5vw,38px);}
+  .masthead-text{flex:1 1 auto;min-width:0;}
+  .mascot{
+    flex:0 0 auto;
+    width:clamp(150px,19vw,220px);
+    height:auto;
+    /* Soft halo so the navy coat separates from the dark desk. */
+    filter:drop-shadow(0 0 18px rgba(240,233,216,.22)) drop-shadow(0 8px 0 rgba(0,0,0,.28));
+  }
+  @media (max-width:760px){
+    .masthead{flex-direction:column-reverse;align-items:center;gap:2px;}
+    .masthead-text{width:100%;}
+    /* Kept small so the first case folder still reaches the fold on a phone. */
+    .mascot{width:104px;}
+  }
+
   /* ---------- section label ---------- */
   .label{
     font-family:'Courier Prime',ui-monospace,monospace;
@@ -212,10 +229,13 @@
 <body>
 <main class="sheet">
 
-  <header class="rise d1">
+  <header class="rise d1 masthead">
+    <div class="masthead-text">
     <p class="eyebrow">Ethics &amp; History</p>
     <h1>Who Is<span class="thin">America</span></h1>
     <p class="deck">Hello, detective. This year we are celebrating 250 years of the great political experiment called the United States of America. Here you will investigate the nature of that experiment: what holds it together, and what could pull it apart. Pick a case file and start digging.</p>
+    </div>
+    <img class="mascot" src="art/eagle.png" width="440" height="714" alt="An eagle detective in a trench coat, holding a case file" decoding="async">
   </header>
 
   <hr class="rule">
