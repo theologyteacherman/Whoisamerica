@@ -893,20 +893,12 @@ function paint(){
   wireSpeakers(sec);
   wireTapNotes(sec,VISITED[idx]);
   updateNav();
-  if(idx===0){
-    var openBtn=sec.querySelector('.btn-row .btn-go');
-    if(openBtn) openBtn.onclick=function(){
-      if(openBtn.disabled) return;
-      openBtn.disabled=true;
-      caseFileOpen(next);
-    };
-  }
   VISITED[idx]=true;
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function next(){ idx++; paint(); }
-/* Screen 1 only: the folder swings open, a page slides out, then the next
-   screen is painted underneath and the overlay fades away. */
+/* Runs once on load: the folder swings open, a page slides out, then the
+   first screen is painted underneath and the overlay fades away. */
 function caseFileOpen(done){
   var reduce=false;
   try{ reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches; }catch(e){}
@@ -1796,7 +1788,7 @@ document.addEventListener('keydown',function(e){
     e.preventDefault();
   }
 });
-paint();
+caseFileOpen(paint);
 </script>
 </body>
 </html>
