@@ -30,7 +30,12 @@
   .pip .pn{display:none;}
   .screen{display:none;animation:rise .35s ease both;}
   .screen.show{display:block;}
-  @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+  /* Deliberately does not animate opacity. paint() inserts each section with
+     .show already applied, so the animation begins on insertion with fill-mode
+     both — and any stall leaves the from-state stranded. Fading opacity here
+     meant a stalled entrance hid the whole screen. Sliding only degrades to
+     "sits 10px low", and the children still fade in via .rv/.in. */
+  @keyframes rise{from{transform:translateY(10px);}to{transform:none;}}
   @media (prefers-reduced-motion:reduce){
     .screen{animation:none;} .shake{animation:none !important;}
     .pour{animation:none !important;} .bubblefloat{animation:none !important;}
