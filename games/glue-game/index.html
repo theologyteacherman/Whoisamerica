@@ -32,7 +32,7 @@
   .screen.show{display:block;}
   /* Deliberately does not animate opacity. paint() inserts each section with
      .show already applied, so the animation begins on insertion with fill-mode
-     both — and any stall leaves the from-state stranded. Fading opacity here
+     both \u2014 and any stall leaves the from-state stranded. Fading opacity here
      meant a stalled entrance hid the whole screen. Sliding only degrades to
      "sits 10px low", and the children still fade in via .rv/.in. */
   @keyframes rise{from{transform:translateY(10px);}to{transform:none;}}
@@ -321,7 +321,7 @@
     <div class="pip"><span class="pl">7 Verdict</span><span class="pn">7</span></div>
   </div>
   <div id="stage"></div>
-  <footer>Ethics · Political Ideology<br><span style="font-size:.85em;opacity:.8">Character art: Twemoji by Twitter, licensed under CC-BY 4.0</span></footer>
+  <footer>Ethics \u00B7 Political Ideology<br><span style="font-size:.85em;opacity:.8">Character art: Twemoji by Twitter, licensed under CC-BY 4.0</span></footer>
 </div>
 
 <script>
@@ -865,12 +865,13 @@ var LINEUPS=[
    people:[
      {skin:'#C68642',hijab:'#3E5C76',cap:'Muslim',img:'10'},
      {skin:'#8C5A3C',hair:'short',shirt:'#8FA8C8',badge:'\u271D',cap:'Black \u00B7 Christian',img:'6'},
+     {skin:'#F2C7A6',hair:'gray',shirt:'#2B2B33',tophat:true,money:true,cap:'White \u00B7 Owner',img:'16'},
      {skin:'#F2C7A6',hair:'gray',shirt:'#4F6B3A',cap:'White \u00B7 Farmer',img:'5'},
      {skin:'#F2C7A6',hair:'gray',shirt:'#6B5B3A',badge:'\u2721',cap:'White \u00B7 Jewish',img:'9'},
      {skin:'#8C5A3C',hair:'short',shirt:'#4F6B3A',cap:'Black \u00B7 Muslim',img:'11'},
      {skin:'#C68642',hair:'curly',shirt:'#3E5C76',badge:'\u2721',cap:'Jewish',img:'12'}],
-   opts:['1','2','3','4','5','6','They all would, actually.'],a:6,
-   why:'Under civic nationalism the criterion of distinction is rules, laws, and principles. Every person here consents to the common rules and commits to uphold them, so every person here holds full membership. Race and religion were never the test. This is the test MLK wanted written into the bricks: character and commitment, not color.'}
+   opts:['1','2','3','4','5','6','7','They all would, actually.'],a:7,
+   why:'Under civic nationalism the criterion of distinction is rules, laws, and principles. Every person here consents to the common rules and commits to uphold them, so every person here holds full membership. Race, religion, and class were never the test \u2014 the owner class nationalism threw out stands inside this wall. This is the test MLK wanted written into the bricks: character and commitment, not color.'}
 ];
 
 /* ============ FLOW ENGINE ============ */
@@ -1727,7 +1728,7 @@ add(5,function(sec){
     '<h2>Who does civic nationalism leave out?</h2>'+
     '<p class="lede" data-rv>Look back at the walls you just tested. Ethnic, religious, and class nationalism each leave people out for something they were born into: a bloodline, a faith, a class. Civic nationalism asks only that you commit to the shared rules. So almost no one is excluded by birth. The door is open. That is exactly why every person in the civic lineup held full membership.</p>'+
     '<p class="lede" data-rv>But an open door still has a frame. Civic nationalism does leave someone out: the person who refuses the shared rules themselves. The one who wants the law to favor their own group, who would deny equal membership to a neighbor, who demands the creed for themselves but not for anyone else. Civic nationalism can shut out the committed excluder. That is a different kind of wall. The other three lock people out for who they are. Civic draws its line at what a person will or will not consent to.</p>'+
-    '<div class="note" data-rv>Here is the edge worth sitting with. Who gets to write the shared rules? Whose customs get called <em>neutral principles</em>, and whose get called <em>foreign</em>? A demand to \u201Cjust accept our values\u201D can quietly become a demand to assimilate. And here is a quieter gap. In principle the door is open to anyone who accepts the creed. In practice, a nation decides how many it will let through that door, and who even gets to stand in line. An open door is not the same as a guaranteed welcome. Civic nationalism is the most open of the four. It is not innocent of drawing lines.</div>'+
+    '<div class="note" data-rv>Here is the edge worth sitting with. Who gets to write the shared rules? Whose customs get called <em>neutral principles</em>, and whose get called <em>foreign</em>? Civic nationalism is entitled to hold its principles as non-negotiable. The risk is subtler: custom can get smuggled in as principle, so \u201Caccept our values\u201D slides into \u201Cbecome like us.\u201D And here is a quieter gap. In principle the door is open to anyone who accepts the creed. In practice, a nation decides how many it will let through that door, and who even gets to stand in line. An open door is not the same as a guaranteed welcome. Civic nationalism is the most open of the four. It is not innocent of drawing lines.</div>'+
   '</div>';
   navRow(sec,'Back to the dream',null,7);
 });
